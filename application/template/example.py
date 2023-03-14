@@ -21,9 +21,8 @@ def next_grade_score(score):
     if score < 0 or score > 100:
         return "存在しない点数です。"
 
-    for key in sorted(grade_dict.keys(), reverse=True):
-        if score < grade_dict[key]:
-            return f"上位の評価({key})まであと {grade_dict[key]-score}点です。"
+    for index, key in enumerate(sorted(grade_dict.keys(), reverse=True)):
+        print(index, key, grade_dict[key])
 
     return "いうことはありません。素晴らしい！"
 
