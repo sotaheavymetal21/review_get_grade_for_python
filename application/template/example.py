@@ -3,7 +3,7 @@
 """例題プログラム"""
 
 
-def get_grade(score: int) -> str:
+def next_grade_score(score):
     grade_dict = {
         "S+": 100,
         "S": 95,
@@ -21,25 +21,17 @@ def get_grade(score: int) -> str:
     if score < 0 or score > 100:
         return "存在しない点数です。"
 
-    for i, (grade, min_score) in enumerate(
-        sorted(grade_dict.items(), key=lambda x: -x[1])
-    ):
-        if score >= min_score:
-            if i == 0:
-                return "最高評価です！"
-            else:
-                prev_grade, prev_min_score = sorted(
-                    grade_dict.items(), key=lambda x: -x[1]
-                )[i - 1]
-                return f"{grade}まであと {min_score-score}点です。次の上位は{prev_grade}で、あと{score-prev_min_score}点必要です。"
+    for key in sorted(grade_dict.keys(), reverse=True):
+        if score < grade_dict[key]:
+            return f"上位の評価({key})まであと {grade_dict[key]-score}点です。"
 
-    return "最低評価です。。。"
+    return "いうことはありません。素晴らしい！"
 
 
-print(get_grade(82))  # Aまであと 3点です。次の上位はA+で、あと 8点必要です。
-print(get_grade(33))  # Cまであと 2点です。次の上位はC+で、あと 2点必要です。
-print(get_grade(2))  # Fまであと 53点です。次の上位はDで、あと 53点必要です。
-print(get_grade(0))  # Fまであと 55点です。次の上位はDで、あと 55点必要です。
-print(get_grade(33.5))  # Cまであと 1.5点です。次の上位はC+で、あと 1.5点必要です。
-print(get_grade(100))  # 最高評価です！
-print(get_grade(-10))  # 存在しない点数です。
+print(next_grade_score(82))  # Sまであと 8点です。
+print(next_grade_score(33))  # Cまであと 37点です。
+print(next_grade_score(2))  # Fまであと 53点です。
+print(next_grade_score(0))  # Fまであと 55点です。
+print(next_grade_score(33.5))  # Cまであと 31.5点です。
+print(next_grade_score(100))  # いうことはありません。素晴らしい！
+print(next_grade_score(-10))  # 存在しない点数です。
