@@ -1,19 +1,36 @@
 #!/usr/bin/env python3
 # -*- coding: utf_8 -*-
-"""例題プログラム
-"""
+"""例題プログラム"""
 
 
-def calc(price, discount_rate):
-    """与えられた価格と割引率から割引後の価格を計算する関数。
+def get_grade(score):
+    grade_dict = {
+        "S+": 100,
+        "A+": 95,
+        "A": 90,
+        "B+": 85,
+        "B": 80,
+        "C+": 75,
+        "C": 70,
+        "D+": 65,
+        "D": 60,
+        "F+": 55,
+        "F": 0,
+    }
 
-    Args:
-        price (int): 価格
-        discount_rate (float): 割引率 (0.0~1.0)
+    if score < 0 or score > 100:
+        return "Score is out of range"
 
-    Returns:
-        int: 割引後の価格
-    """
-    price2 = int(price * discount_rate)
-    d = price - price2
-    return d
+    for key in sorted(grade_dict.keys(), reverse=True):
+        if score >= grade_dict[key]:
+            return key
+
+    return "Score is out of range"
+
+
+print(get_grade(99))
+print(get_grade(85))
+print(get_grade(30))
+print(get_grade(100))
+print(get_grade(110))
+print(get_grade(-10))
