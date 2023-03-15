@@ -11,14 +11,19 @@ def test_S():
     assert next_grade_score(95) == "現在の評価はSです。上位の評価(S+)まであと5点です。"
 
 
-def test_C_plus():
+def test_C():
     """グレードが C+ のとき"""
     assert next_grade_score(68) == "現在の評価はCです。上位の評価(C+)まであと2点です。"
 
 
-def test_when_D():
+def test_E():
     """グレードが D のとき"""
     assert next_grade_score(58) == "現在の評価はDです。上位の評価(D+)まであと2点です。"
+
+
+def test_F():
+    """グレードが F のとき"""
+    assert next_grade_score(4) == "現在の評価はFです。上位の評価(D)まであと51点です。"
 
 
 def test_not_exist_point():
