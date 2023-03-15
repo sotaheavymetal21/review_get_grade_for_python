@@ -18,9 +18,10 @@ grade_dict = {
 }
 
 
-def get_score(score_of_test):
+def get_score(score_of_test, point = 100):
+    list = []
     not_exist = "存在しない点数です。"
-    if score_of_test is 100:
+    if score_of_test is point:
         return "満点です！素晴らしい！"
     if not isinstance(score_of_test, int):
         return "存在しない点数です。"
@@ -28,9 +29,10 @@ def get_score(score_of_test):
         return not_exist
     if score_of_test > 100:
         return not_exist
-    list = []
     for grade in grade_dict.keys():
         if score_of_test >= grade_dict[grade]:
             return f"現在の評価は{grade}です。上位の評価({list[-1]})まであと{grade_dict[list[-1]] - score_of_test}点です。"
-        else:
+        elif score_of_test < grade_dict[grade]:
             list.append(grade)
+        else:
+            return "点数が存在しません。"
