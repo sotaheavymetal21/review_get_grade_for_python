@@ -4,6 +4,17 @@
 
 
 def next_grade_score(score):
+    """
+    点数を受け取り、該当する評価と上位の評価までの差分を返す
+
+    Args:
+    score (int): ユーザーのテストの得点。範囲は0~100
+    Returns:
+    str: 現在の評価と上位の評価までの差分を返す
+        与えられたscoreが100の場合、'満点です！素晴らしい！'と返す
+        与えられたscoreが0~100以外の整数である場合、'存在しない点数です。'と返す
+        与えられたscoreが評価表に含まれている場合、現在の評価と上位の評価までの差分を返す
+    """
     grade_dict = {
         "S+": 100,
         "S": 95,
@@ -27,12 +38,3 @@ def next_grade_score(score):
             next_grade_point = grade_dict[grade]
         else:
             return f"現在の評価は{grade}です。上位の評価({next_grade})まであと{next_grade_point - score}点です。"
-
-
-print(next_grade_score(99))  # 現在の評価はSです。上位の評価(S+)まであと1点です。
-print(next_grade_score(82))  # 現在の評価はB+です。上位の評価(A)まであと3点です。
-print(next_grade_score(71))  # 現在の評価はC+です。上位の評価(B)まであと4点です。
-print(next_grade_score(66))  # 現在の評価はCです。上位の評価(C+)まであと4点です。
-print(next_grade_score(-15))  # 存在しない点数です。
-print(next_grade_score(30.5))  # 存在しない点数です。
-print(next_grade_score(100))  # 満点です！素晴らしい！
