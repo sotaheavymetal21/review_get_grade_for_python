@@ -17,20 +17,28 @@ def next_grade_score(score):
         "D": 55,
         "F": 0,
     }
-
-    if score < 0 or score > 100:
+    if score == 100:
+        return "満点です！素晴らしい！"
+    if score < 0 or score > 100 or not isinstance(score, int):
         return "存在しない点数です。"
+    grade_list = []
+    for grade, point in grade_dict.items():
+        if score > point:
+            return f"現在の評価は{grade}です。上位の評価({grade_list[-1]})まであと{grade_dict[grade_list[-1]] - score}点です。"
+        else:
+            grade_list.append(grade)
 
-    for index, key in enumerate(sorted(grade_dict.keys(), reverse=True)):
-        print(index, key, grade_dict[key])
 
-    return "いうことはありません。素晴らしい！"
+print(next_grade_score(99))  # 上位の評価S+まであと1点です。
+print(next_grade_score(82))  # 上位の評価Aまであと3点です。
+print(next_grade_score(71))  # 上位の評価Bまであと4点です。
+print(next_grade_score(66))  # 上位の評価C+まであと4点です。
+print(next_grade_score(-15))  # 存在しない点数です。
+print(next_grade_score(30.5))  # 上位の評価Dまであと24.5点です。
+print(next_grade_score(100))  # 上位の評価S+まであと0点です。
 
-
-print(next_grade_score(82))  # Sまであと 8点です。
-print(next_grade_score(33))  # Cまであと 37点です。
-print(next_grade_score(2))  # Fまであと 53点です。
-print(next_grade_score(0))  # Fまであと 55点です。
-print(next_grade_score(33.5))  # Cまであと 31.5点です。
-print(next_grade_score(100))  # いうことはありません。素晴らしい！
-print(next_grade_score(-10))  # 存在しない点数です。
+#    for grade in grade_dict.keys():
+#       if score > grade_dict[grade]:
+#          return f"現在の評価は{grade}です。上位の評価({grade_list[-1]})まであと{grade_dict[grade_list[-1]] - score}点です。"
+#     else:
+#        grade_list.append(grade)
