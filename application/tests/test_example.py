@@ -1,46 +1,34 @@
 #!/usr/bin/env python3
 # -*- coding: utf_8 -*-
-"""例題プログラム
-"""
+"""例題プログラム"""
 
-from template.example import calc
-
-
-def test_calc():
-    """正常系のテスト"""
-    assert calc(10, 0.5) == 5
+from template.example import next_grade_score
 
 
-def test_calc2():
-    """割引率が整数のテスト"""
-    assert calc(10, 5) == -40
+def test_1():
+    """グレードが S のとき"""
+    assert next_grade_score(95) == "現在の評価はSです。上位の評価(S+)まであと5点です。"
 
 
-def test_calc3():
-    """割引率が1より大きい場合のテスト"""
-    assert calc(10, 1.5) == -5
+def test_2():
+    """グレードが C+ のとき"""
+    assert next_grade_score(68) == "現在の評価はC+です。上位の評価(B)まであと7点です。"
+
+def test_3():
+    """グレードが D のとき"""
+    assert next_grade_score(58) == "現在の評価はDです。上位の評価(D+)まであと2点です。"
 
 
-def test_calc4():
-    """価格が小数のテスト"""
-    assert calc(10.5, 0.2) == 8.5
+def test_4():
+    """存在しない点数（100よりも大きい）のとき"""
+    assert next_grade_score(105) == "存在しない点数です。"
 
 
-def test_calc5():
-    """割引率が0の場合のテスト"""
-    assert calc(10, 0) == 10
+def test_5():
+    """存在しない点数（マイナス）のとき"""
+    assert next_grade_score(-15) == "存在しない点数です。"
 
 
-def test_calc6():
-    """割引率が1の場合のテスト"""
-    assert calc(10, 1) == 0
-
-
-def test_calc7():
-    """価格がマイナスのテスト"""
-    assert calc(-5, 0.5) == -3
-
-
-def test_calc8():
-    """割引率がマイナスのテスト"""
-    assert calc(10, -1) == 20
+def test_6():
+    """存在しない点数（小数点）のとき"""
+    assert next_grade_score(22.5) == "存在しない点数です。"
