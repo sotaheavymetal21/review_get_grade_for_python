@@ -21,10 +21,10 @@ def next_grade_score(score):
         return "満点です！素晴らしい！"
     if score < 0 or score > 100 or not isinstance(score, int):
         return "存在しない点数です。"
-    for grade, point in grade_dict.items():
-        if score < point:
+    for grade in grade_dict:
+        if score < grade_dict[grade]:
             next_grade = grade
-            next_grade_point = point
+            next_grade_point = grade_dict[grade]
         else:
             return f"現在の評価は{grade}です。上位の評価({next_grade})まであと{next_grade_point - score}点です。"
 
