@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf_8 -*-
 """例題プログラム"""
-import pytest
 
+# get_score関数をインポートします
 from template.example import get_score
+import pytest
 
 
 def test_S():
-    """評価が S のとき"""
+    """評価が S のとき
+    95点を入力すると現在はS,上位評価はS+と出力される
+    """
     assert get_score(95) == "現在の評価はSです。上位の評価(S+)まであと5点です。"
 
 
@@ -39,3 +42,8 @@ def test_not_exist_point2():
 def test_not_integer():
     """存在しない点数（小数点）のとき"""
     assert get_score(22.5) == "存在しない点数です。"
+
+
+def test_string():
+    """存在しない点数（文字列）が入力されたとき"""
+    assert get_score("hanzo") == "存在しない点数です。"
